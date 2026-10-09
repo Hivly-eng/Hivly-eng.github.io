@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hively - تحدي نفسك. طوّر لغتك</title>
+    <!-- ربط ملف التصميم والألوان الذي سنصنعه في الخطوة القادمة -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- أعلى الشاشة (الهيدر) -->
+    <header class="main-header">
+        <div class="logo">Hively</div>
+        <div class="header-controls">
+            <span class="streak-badge" id="global-streak">🔥 0 يوم</span>
+            <button class="lang-toggle-btn">EN</button>
+        </div>
+    </header>
+
+    <main class="app-container">
+
+        <!-- الشاشة 1: الصفحة الرئيسية (الدخول) -->
+        <section id="view-home" class="view-section active">
+            <div class="hero-content">
+                <h1>توقف عن التعلّم العشوائي.. احصل على خطتك المخصصة!</h1>
+                <p>اكتشف مستواك الحقيقي واستلم تحدي الـ 30 يوماً الدراسي الموجه لك مجاناً 100% وبدون إعلانات.</p>
+                <button class="primary-action-btn" onclick="switchView('view-quiz')">ابدأ اختبار تحديد المستوى مجاناً ←</button>
+            </div>
+            
+            <div class="mvp-preview-grid">
+                <div class="preview-card"><h3>🎯 خطتك المخصصة</h3><p>مسار منظم يوماً بيوم يناسب وتيرة تعلمك الحقيقية.</p></div>
+                <div class="preview-card"><h3>🗣️ تحدي التحدث الذكي</h3><p>تمارين تفاعلية يومية لكسر حاجز الخوف ونطق الجمل بثقة.</p></div>
+                <div class="preview-card locked-card"><h3>📚 مصادر وكتب رقمية</h3><p>(قريباً في التحديثات القادمة للمنصة)</p></div>
+            </div>
+
+            <div class="trust-footer-bar">
+                <span class="trust-item">✓ مجاني بالكامل</span>
+                <span class="trust-item">✓ خطوات يومية بسيطة</span>
+                <span class="trust-item">✓ إلغاء في أي وقت</span>
+            </div>
+        </section>
+
+        <!-- الشاشة 2: شاشة الاختبار التفاعلي (Quiz) -->
+        <section id="view-quiz" class="view-section">
+            <div class="quiz-wrapper">
+                <div class="quiz-progress-container"><div class="quiz-progress-fill" id="quiz-progress-bar"></div></div>
+                <h2 class="quiz-question-title" id="quiz-question-text">تحميل السؤال الأول...</h2>
+                <div class="quiz-options-wrapper" id="quiz-options-box">
+                    <!-- الأزرار التفاعلية للخيارات ستظهر هنا برمجياً لاحقاً -->
+                </div>
+            </div>
+        </section>
+
+        <!-- الشاشة 3: نافذة التهنئة المنبثقة وجمع البريد الإلكتروني (Pop-up) -->
+        <section id="view-congrats" class="view-section">
+            <div class="pop-up-card">
+                <div class="success-icon">🎉</div>
+                <h2>تهانينا البالغة يا شريكي!</h2>
+                <p>لقد أتممت الاختبار بنجاح وتم تحديد مستواك الحالي وهو:</p>
+                <div class="level-badge-display" id="user-level-badge">A2</div>
+                
+                <!-- صندوق جمع البريد الإلكتروني الاستراتيجي لبناء القاعدة الجماهيرية -->
+                <div class="email-capture-form">
+                    <p class="form-instruction">أدخل بريدك الإلكتروني لتفعيل خطتك اليومية واستلام رسائل التذكير والتحفيز الصباحية مجاناً:</p>
+                    <input type="email" id="user-email-input" placeholder="name@example.com" required>
+                    <button class="submit-email-btn" onclick="switchView('view-dashboard')">تفعيل الخطة والدخول للوحة التحكم ←</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- الشاشة 4: لوحة التحكم بالخطط والأيام المقفلة (Dashboard) -->
+        <section id="view-dashboard" class="view-section">
+            <div class="dashboard-banner">
+                <h2>لوحة تحكم مستوى <span id="dash-level-text">A2</span></h2>
+                <p>حافظ على اشتعال شعلتك اليومية وأكمل التحديات خطوة بخطوة!</p>
+            </div>
+
+            <div class="dashboard-stats-row">
+                <div class="stat-box"><span>أيام الالتزام</span><strong id="dash-streak-count">1 يوم 🔥</strong></div>
+                <div class="stat-box"><span>التقدم العام</span><strong id="dash-progress-count">0 / 30 يوم 🎯</strong></div>
+            </div>
+
+            <h3 class="grid-title">مسار تحدي الـ 30 يوماً الدراسي</h3>
+            <div class="days-grid-layout" id="days-grid-container">
+                <!-- أزرار الأيام الثلاثين المقفلة والمفتوحة ستتوزع هنا بصرياً -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- كود برمجي بسيط جداً ومؤقت للتنقل البصري بين الصفحات للتجربة -->
+    <script>
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            
+            // محاكاة سريعة لبناء أزرار الأيام الثلاثين في لوحة التحكم عند فتحها لرؤية التصميم
+            if(viewId === 'view-dashboard') {
+                const container = document.getElementById('days-grid-container');
+                container.innerHTML = '';
+                for(let i = 1; i <= 30; i++) {
+                    const btn = document.createElement('button');
+                    btn.className = i === 1 ? 'day-btn active-day' : 'day-btn locked-day';
+                    btn.innerHTML = `اليوم ${i} ${i > 1 ? '🔒' : '➔'}`;
+                    btn.onclick = () => { if(i === 1) alert('هنا سيفتح درس اليوم الأول المخصص برمجياً!'); else alert('هذا اليوم مقفل! سيتفعل تلقائياً بعد إنهاء اليوم السابق الحفاظ على الالتزام.'); };
+                    container.appendChild(btn);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
